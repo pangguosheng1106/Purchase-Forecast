@@ -309,7 +309,7 @@ if __name__ == "__main__":
     min_value = train_agg_filter_outlier['V6'].min()
     train_agg_filter_outlier = cut_v6(train_agg_filter_outlier, max_value, min_value, "V6")
     test_agg = cut_v6(test_agg, max_value, min_value, "V6")
-    """
+    
     user_record_counter, outlier_user2 = generate_num_user_record(train_log)
     user_module_A_counter = generate_user_module_A_counter(train_log)
     user_module_B_counter, outlier_user3 = generate_user_module_B_counter(train_log)
@@ -326,7 +326,7 @@ if __name__ == "__main__":
     user_appear_day_last = generate_user_appear_day_last(user_exist_day_train)
     behavior_gap_statistical_data = generate_behavior_gap_statistical_data(user_exist_day_train)
     operation_type = generate_operation_type(train_log)
-    """
+    
     user_record_counter_test  = generate_num_user_record_test(test_log)
     user_module_A_counter_test = generate_user_module_A_counter(test_log)
     user_module_B_counter_test = generate_user_module_B_counter(test_log)
@@ -343,7 +343,7 @@ if __name__ == "__main__":
     user_appear_day_last_test = generate_user_appear_day_last(user_exist_day_test)
     behavior_gap_statistical_data_test = generate_behavior_gap_statistical_data(user_exist_day_test)
     operation_type_test = generate_operation_type(test_log)
-    """
+    
     train_data = pd.merge(train_flag, user_record_counter, on=['USRID'], how='left')
     train_data = pd.merge(train_data, user_module_A_counter, on=['USRID'], how='left')
     train_data = pd.merge(train_data, user_module_B_counter, on=['USRID'], how='left')
@@ -366,7 +366,7 @@ if __name__ == "__main__":
     del module_A_element,module_B_element,module_C_element,ratio_days_in_month,ratio_days_in_week,day_mean_open
     del day_mean_behavior_times,user_continuou_days,user_appear_day_first,user_appear_day_last,operation_type
     del behavior_gap_statistical_data,train_agg_filter_outlier, train_agg, train_log
-    """
+    
     test_data = pd.merge(test_agg, user_record_counter_test, on=['USRID'], how='left')
     test_data = pd.merge(test_data, user_module_A_counter_test, on=['USRID'], how='left')
     test_data = pd.merge(test_data, user_module_B_counter_test[0], on=['USRID'], how='left')
@@ -390,5 +390,5 @@ if __name__ == "__main__":
     del user_appear_day_first_test, user_appear_day_last_test, behavior_gap_statistical_data_test, operation_type_test
 
     #保存特征数据
-    #train_data.to_csv('%s/train_data.csv' % output_dir, header=True, index=False)
+    train_data.to_csv('%s/train_data.csv' % output_dir, header=True, index=False)
     test_data.to_csv('%s/test_data.csv' % output_dir, header=True, index=False)
